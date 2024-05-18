@@ -15,7 +15,16 @@ namespace Shared.Commands.Direction
 
         public void Execute()
         {
-            var _caterPillar = CaterPillarFactory.GetCaterPillar();
+            try
+            {
+                var caterPillar = CaterPillarFactory.GetCaterPillar();
+
+                Map.Print(caterPillar.MoveRight(Steps));
+            }
+            catch (Exception)
+            {
+                CaterPillarFactory.GetCaterPillar(true);
+            }
         }
     }
 }

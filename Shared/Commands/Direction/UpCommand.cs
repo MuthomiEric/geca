@@ -1,4 +1,5 @@
-﻿using Shared.Helpers;
+﻿using Shared.Exceptions;
+using Shared.Helpers;
 using Shared.Interfaces;
 using Shared.Models;
 
@@ -13,9 +14,16 @@ namespace Shared.Commands.Direction
         }
         public void Execute()
         {
-            var caterPillar = CaterPillarFactory.GetCaterPillar();
+            try
+            {
+                var caterPillar = CaterPillarFactory.GetCaterPillar();
 
-            Map.Print(caterPillar.MoveUp(Steps));
+                Map.Print(caterPillar.MoveUp(Steps));
+            }
+            catch (Exception)
+            {
+                CaterPillarFactory.GetCaterPillar(true);
+            }
         }
     }
 }

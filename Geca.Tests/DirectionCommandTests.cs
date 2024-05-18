@@ -1,4 +1,5 @@
-﻿using Shared.Models;
+﻿using Shared.Exceptions;
+using Shared.Models;
 
 namespace Geca.Tests
 {
@@ -13,16 +14,7 @@ namespace Geca.Tests
 
             var caterpillar = new CaterPillar(map);
 
-            try
-            {
-                caterpillar.MoveUp(30);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
+            Assert.Throws<IndexOutOfRangeException>(() => caterpillar.MoveUp(30));
         }
     }
 }
